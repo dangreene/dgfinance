@@ -1,0 +1,26 @@
+<h1>Import Transactions</h1>
+<form>
+    <div id="csvSelection">
+        <h2>Type of CSV:</h2>
+        <select ng-model="transactionImportCtrl.selectedFileType"
+                ng-options="fileType.name for fileType in transactionImportCtrl.fileTypes"></select>
+    </div>
+
+    <div id="fileSelection" ng-show="transactionImportCtrl.selectedFileType">
+        <h2>Select a file:</h2>
+
+        <div file-input="transactionImportCtrl.currentFile"
+             on-change="transactionImportCtrl.readInput()"></div>
+    </div>
+
+    <div id="accountSelection" ng-show="transactionImportCtrl.hasMultipleAccounts()">
+        <h2>Account</h2>
+        <select>
+
+        </select>
+    </div>
+
+    <div id="accountTransactions" ng-show="transactionImportCtrl.hasTransactions()">
+        <h2>Transactions</h2>
+    </div>
+</form>
