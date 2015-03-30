@@ -1,4 +1,4 @@
-dgfinance - MEAN test app for banking
+dgfinance - local accounting poc
 
 dev setup:
 - install node, mongodb
