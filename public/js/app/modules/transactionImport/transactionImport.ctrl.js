@@ -1,18 +1,37 @@
-define(['angular', 'papaparse', 'components/fileImporters/csvImporters'], function (angular, Papa, csvImporters) {
+define(['angular', 'components/fileImporters/csvImporters', 'lodash'], function (angular, csvImporters, _) {
     return angular.module('transactionImport.ctrl', [])
-        .controller('TransactionImportCtrl', [function () {
+        .controller('TransactionImportCtrl', ['$scope', function ($scope) {
             var self = this;
 
             self.readInput = function () {
-                var importer = csvImporters.getImporter(self.selectedFileType.name);
-                importer.parseFile(self.currentFile, function (results) {
-
-                });
+                if (self.currentFile) {
+                    var importer = csvImporters.getImporter(self.selectedFileType.name);
+                    importer.parseFile(self.currentFile, function (results) {
+                        self.currentFileContent = results;
+                        console.log(self.currentFileContent);
+                        $scope.$digest();
+                    });
+                }
             };
 
-            self.hasMultipleAccounts = function () {
+            self.getCurrentAccountTransactions = function(){
+                var account = self.getCurrentAccount();
+                return account && account.transactions || [];
+            };
+
+            self.hasTransactions = function(){
+                return self.getCurrentAccountTransactions().length > 0;
+            };
+
+            self.getCurrentAccount = function() {
+                if (self.selectedAccount){
+                    return _.find(self.currentFileContent.accounts, {name: self.selectedAccount.name});
+                }
+            };
+
+            self.hasAccounts = function () {
                 return self.currentFileContent && self.currentFileContent.accounts
-                    && self.currentFileContent.accounts.length > 1;
+                    && self.currentFileContent.accounts.length > 0;
             };
 
             var initializeController = function () {
@@ -26,6 +45,7 @@ define(['angular', 'papaparse', 'components/fileImporters/csvImporters'], functi
                 self.currentFile = null;
                 self.selectedFileType = null;
                 self.currentFileContent = null;
+                self.selectedAccount = null;
             };
 
             initializeController();

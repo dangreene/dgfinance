@@ -13,14 +13,30 @@
              on-change="transactionImportCtrl.readInput()"></div>
     </div>
 
-    <div id="accountSelection" ng-show="transactionImportCtrl.hasMultipleAccounts()">
+    <div id="accountSelection" ng-show="transactionImportCtrl.hasAccounts()">
         <h2>Account</h2>
-        <select>
-
-        </select>
+        <select ng-model="transactionImportCtrl.selectedAccount"
+                ng-options="account.name for account in transactionImportCtrl.currentFileContent.accounts"></select>
     </div>
 
     <div id="accountTransactions" ng-show="transactionImportCtrl.hasTransactions()">
         <h2>Transactions</h2>
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Post Date</th>
+                <th>Amount</th>
+                <th>Type</th>
+            </tr>
+
+        <tr ng-repeat="transaction in transactionImportCtrl.getCurrentAccountTransactions()">
+            <td>{{transaction.description}}</td>
+            <td>{{transaction.transactionDate | date:"MM/dd/yyyy" }}</td>
+            <td>{{transaction.transactionPostDate | date:"MM/dd/yyyy" }}</td>
+            <td>{{transaction.amount | currency}}</td>
+            <td>{{transaction.transactionType}}</td>
+        </tr>
+        </table>
     </div>
 </form>
