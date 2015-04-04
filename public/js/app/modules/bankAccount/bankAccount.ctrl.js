@@ -4,7 +4,15 @@ define(['angular', 'lodash', 'app/modules/bankAccount/bankAccount.service'], fun
             function ($scope, bankAccounts, BankAccountService) {
                 var self = this;
 
+                self.accountChanged = function () {
+                    BankAccountService.getTransactions(self.selectedBankAccount._id)
+                        .then(function (response) {
+                            self.accountTransactions = response;
+                        });
+                };
                 var initializeController = function () {
+                    self.accountTransactions = null;
+                    self.selectedBankAccount = null;
                     self.bankAccounts = bankAccounts;
                 };
 

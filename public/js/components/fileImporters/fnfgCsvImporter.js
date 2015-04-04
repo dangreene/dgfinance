@@ -78,7 +78,7 @@ define(['lodash','papaparse'], function (_, Papa) {
                     description: row[2],
                     amount: (transactionType === debitType) ? -Number(row[3]) : Number(row[3]),
                     transactionType: transactionType,
-                    notes: row[5]
+                    notes: row[5] && row[5].toString()
                 });
             }
         });

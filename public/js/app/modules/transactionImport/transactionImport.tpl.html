@@ -28,6 +28,7 @@
                 <th>Post Date</th>
                 <th>Amount</th>
                 <th>Type</th>
+                <th>Notes</th>
             </tr>
 
         <tr ng-repeat="transaction in transactionImportCtrl.getCurrentAccountTransactions()">
@@ -36,6 +37,7 @@
             <td>{{transaction.transactionPostDate | date:"MM/dd/yyyy" }}</td>
             <td>{{transaction.amount | currency}}</td>
             <td>{{transaction.transactionType}}</td>
+            <td>{{transaction.notes}}</td>
         </tr>
         </table>
     </div>
