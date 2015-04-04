@@ -1,11 +1,11 @@
-<h1>Bank Accounts</h1>
+<h2>Bank Accounts</h2>
 
-<h2>Current Accounts:</h2>
+<h3>Current Accounts:</h3>
 <select ng-model="bankAccountCtrl.selectedBankAccount"
         ng-options="account.description for account in bankAccountCtrl.bankAccounts"
         ng-change="bankAccountCtrl.accountChanged()"></select>
 
-<h2>Transactions</h2>
+<h3>Transactions</h3>
 <table>
     <tr>
         <th>Description</th>
