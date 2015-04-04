@@ -1,6 +1,8 @@
-define(['angular', 'components/fileImporters/csvImporters', 'lodash', 'app/modules/bankAccount/bankAccount.service'], function (angular, csvImporters, _) {
+define(['angular', 'components/fileImporters/csvImporters', 'lodash',
+    'app/modules/bankAccount/bankAccount.service'], function (angular, csvImporters, _) {
     return angular.module('transactionImport.ctrl', ['bankAccount.service'])
-        .controller('TransactionImportCtrl', ['BankAccountService', '$scope', function (bankAccountService, $scope) {
+        .controller('TransactionImportCtrl', ['$scope', 'bankAccounts', 'BankAccountService',
+            function ($scope, bankAccounts, BankAccountService) {
             var self = this;
 
             self.readInput = function () {
@@ -12,6 +14,11 @@ define(['angular', 'components/fileImporters/csvImporters', 'lodash', 'app/modul
                         $scope.$digest();
                     });
                 }
+            };
+
+            self.saveToAccount = function(){
+                BankAccountService.insertTransactions(self.selectedBankAccount._id,
+                    self.getCurrentAccountTransactions());
             };
 
             self.getCurrentAccountTransactions = function(){
@@ -35,7 +42,7 @@ define(['angular', 'components/fileImporters/csvImporters', 'lodash', 'app/modul
             };
 
             var initializeController = function () {
-                bankAccountService.callService();
+                console.log(bankAccounts);
                 var fileTypes = [];
 
                 csvImporters.getAvailableImporters().forEach(function (availableImporter) {
@@ -47,6 +54,8 @@ define(['angular', 'components/fileImporters/csvImporters', 'lodash', 'app/modul
                 self.selectedFileType = null;
                 self.currentFileContent = null;
                 self.selectedAccount = null;
+                self.bankAccounts = bankAccounts;
+                self.selectedBankAccount = null;
             };
 
             initializeController();
