@@ -1,3 +1,10 @@
-/**
- * Created by Dan on 4/3/15.
- */
+var mongoose = require('mongoose');
+
+var saveTransactions = function (req, res, next) {
+    var accountId = req.params.id;
+};
+
+
+module.exports = {
+    saveTransactions: saveTransactions
+};
