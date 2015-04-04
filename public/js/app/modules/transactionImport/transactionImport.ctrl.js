@@ -9,6 +9,7 @@ define(['angular', 'components/fileImporters/csvImporters', 'lodash',
                 if (self.currentFile) {
                     var importer = csvImporters.getImporter(self.selectedFileType.name);
                     importer.parseFile(self.currentFile, function (results) {
+                        console.log(results);
                         self.currentFileContent = results;
                         self.selectedAccount = null;
                         $scope.$digest();
@@ -42,7 +43,6 @@ define(['angular', 'components/fileImporters/csvImporters', 'lodash',
             };
 
             var initializeController = function () {
-                console.log(bankAccounts);
                 var fileTypes = [];
 
                 csvImporters.getAvailableImporters().forEach(function (availableImporter) {
