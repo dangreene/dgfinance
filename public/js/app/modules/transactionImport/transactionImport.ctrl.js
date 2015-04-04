@@ -10,7 +10,7 @@ define(['angular', 'components/fileImporters/csvImporters', 'lodash',
                     var importer = csvImporters.getImporter(self.selectedFileType.name);
                     importer.parseFile(self.currentFile, function (results) {
                         self.currentFileContent = results;
-                        console.log(self.currentFileContent);
+                        self.selectedAccount = null;
                         $scope.$digest();
                     });
                 }
