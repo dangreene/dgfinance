@@ -1,17 +1,21 @@
-define(['angular', 'angular-route', './transactionImport.ctrl', 'app/modules/bankAccount/bankAccount.service'], function (angular) {
-    return angular.module('transactionImport', ['ngRoute', 'transactionImport.ctrl', 'bankAccount.service'])
+define(['angular', 'angular-route', './transactionImport.ctrl',
+  'app/modules/bankAccount/bankAccount.service'
+], function(angular) {
+  return angular.module('transactionImport', ['ngRoute',
+    'transactionImport.ctrl', 'bankAccount.service'
+  ])
 
-        .config(function ($routeProvider) {
+  .config(function($routeProvider) {
 
-            $routeProvider
-                .when('/transactionImport', {
-                    templateUrl: 'js/app/modules/transactionImport/transactionImport.tpl.html',
-                    controller: 'TransactionImportCtrl as transactionImportCtrl',
-                    resolve: {
-                        bankAccounts: ['BankAccountService', function(AccountService){
-                            return AccountService.getAccounts();
-                        }]
-                    }
-                });
-        });
+    $routeProvider
+      .when('/transactionImport', {
+        templateUrl: 'js/app/modules/transactionImport/transactionImport.tpl.html',
+        controller: 'TransactionImportCtrl as transactionImportCtrl',
+        resolve: {
+          bankAccounts: ['BankAccountService', function(AccountService) {
+            return AccountService.getAccounts();
+          }]
+        }
+      });
+  });
 });

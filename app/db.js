@@ -1,18 +1,18 @@
 var mongoose = require('mongoose');
 
-var bootstrapDb = function(){
-    mongoose.connect('mongodb://127.0.0.1:27017/dgfinance');
-    require('./models/account');
-    require('./models/transaction');
+require('./models/account');
+require('./models/transaction');
 
-    var db = mongoose.connection;
+exports.connect = function(successCallback) {
 
-    db.on('error', console.error.bind(console, 'connection error:'));
+  mongoose.connect('mongodb://127.0.0.1:27017/dgfinance');
 
-    db.once('open', function (callback) {
-        console.log("connected");
-    });
+  var db = mongoose.connection;
+
+  db.on('error', console.error.bind(console, 'connection error:'));
+
+  db.once('open', function(callback) {
+    console.log("connected");
+    successCallback();
+  });
 };
-
-
-module.exports = bootstrapDb;
