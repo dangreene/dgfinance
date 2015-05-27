@@ -3,7 +3,7 @@ logs
 *.log
 
 # Vendor packages
-app/public/vendor
+
 
 # Node packages
 node_modules
