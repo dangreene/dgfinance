@@ -18,7 +18,7 @@ requirejs.config({
       exports: 'Papa'
     },
     'lodash': {
-      exports: "_"
+      exports: '_'
     }
   }
 });

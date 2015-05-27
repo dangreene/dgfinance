@@ -1,10 +1,10 @@
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var transactionSchema = mongoose.Schema({
   account: {
     type: Schema.Types.ObjectId,
-    ref: "Account"
+    ref: 'Account'
   },
   transactionPostDate: Date,
   transactionDate: Date,
@@ -14,4 +14,4 @@ var transactionSchema = mongoose.Schema({
   notes: String
 });
 
-mongoose.model("Transaction", transactionSchema, "transactions");
+mongoose.model('Transaction', transactionSchema, 'transactions');

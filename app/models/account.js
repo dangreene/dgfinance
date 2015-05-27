@@ -5,4 +5,4 @@ var accountSchema = mongoose.Schema({
   description: String
 });
 
-mongoose.model("Account", accountSchema, "accounts");
+mongoose.model('Account', accountSchema, 'accounts');

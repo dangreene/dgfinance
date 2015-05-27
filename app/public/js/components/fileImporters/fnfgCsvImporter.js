@@ -1,16 +1,16 @@
 define(['lodash', 'papaparse'], function(_, Papa) {
 
-  var creditType = "CREDIT";
-  var debitType = "DEBIT";
+  var creditType = 'CREDIT';
+  var debitType = 'DEBIT';
 
   var getTransactionType = function(value) {
     switch (value) {
-      case "Debit":
+      case 'Debit':
         return debitType;
-      case "Credit":
+      case 'Credit':
         return creditType;
       default:
-        throw new Error("Invalid Transaction Type Provided.");
+        throw new Error('Invalid Transaction Type Provided.');
     }
   };
 
@@ -26,12 +26,12 @@ define(['lodash', 'papaparse'], function(_, Papa) {
 
   var filterTransactionHeaderRows = function(rows) {
     return _.filter(rows, function(row) {
-      return !row.startsWith(",Posted Date");
+      return !row.startsWith(',Posted Date');
     });
   };
 
   var splitStringByLine = function(value) {
-    return value.split("\n");
+    return value.split('\n');
   };
 
   var splitStringByComma = function(value) {
@@ -71,13 +71,13 @@ define(['lodash', 'papaparse'], function(_, Papa) {
         });
         currentAccountIndex++;
       } else {
-        var transactionType = getTransactionType(row[9]);
+        var tranType = getTransactionType(row[9]);
         accounts[currentAccountIndex].transactions.push({
           transactionDate: new Date(row[10]),
           transactionPostDate: new Date(row[1]),
           description: row[2],
-          amount: (transactionType === debitType) ? -Number(row[3]) : Number(row[3]),
-          transactionType: transactionType,
+          amount: (tranType === debitType) ? -Number(row[3]) : Number(row[3]),
+          transactionType: tranType,
           notes: row[5] && row[5].toString()
         });
       }

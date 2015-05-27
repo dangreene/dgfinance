@@ -11,7 +11,7 @@ define([], function() {
         return importers[x];
       }
     }
-    console.log("no importers found");
+    console.log('no importers found');
   };
 
   var getAvailableImporters = function() {

@@ -7,12 +7,14 @@ define(['angular'], function(angular) {
         });
       };
 
-      var insertTransactions = function(accountId, transactions, successCallback) {
-        return $http.post('/api/accounts/' + accountId + "/transactions", transactions);
+      var insertTransactions = function(accountId, transactions,
+        successCallback) {
+        return $http
+          .post('/api/accounts/' + accountId + '/transactions', transactions);
       };
 
       var getTransactions = function(accountId) {
-        return $http.get('/api/accounts/' + accountId + "/transactions")
+        return $http.get('/api/accounts/' + accountId + '/transactions')
           .then(function(response) {
             return response && response.data;
           });

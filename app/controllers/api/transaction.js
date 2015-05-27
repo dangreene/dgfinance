@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
-  Account = mongoose.model('Account'),
-  Transaction = mongoose.model('Transaction'),
-  _ = require('lodash');
+var mongoose = require('mongoose');
+var Account = mongoose.model('Account');
+var Transaction = mongoose.model('Transaction');
+var _ = require('lodash');
 
 var getTransactions = function(req, res, next) {
   var accountId = req.params.id;
@@ -21,7 +21,7 @@ var saveTransactions = function(req, res, next) {
   }, function(err, doc) {
     if (err) {
       res.json({
-        message: "failed"
+        message: 'failed'
       });
     } else {
       var docsToSave = _.map(records, function(record) {
@@ -37,7 +37,7 @@ var saveTransactions = function(req, res, next) {
 
       Transaction.collection.insert(docsToSave, {}, function(err, doc) {
         res.json({
-          message: "success"
+          message: 'success'
         });
       });
     }

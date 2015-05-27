@@ -1,8 +1,10 @@
 define(['angular', 'angular-route', './bankAccount.ctrl',
-'app/modules/bankAccount/bankAccount.service'],
+    'app/modules/bankAccount/bankAccount.service'
+  ],
   function(angular) {
     return angular.module('bankAccount', ['ngRoute', 'bankAccount.ctrl',
-    'bankAccount.service'])
+      'bankAccount.service'
+    ])
 
     .config(function($routeProvider) {
 

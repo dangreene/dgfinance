@@ -1,7 +1,7 @@
-var accountController = require('../controllers/api/account'),
-  transactionController = require('../controllers/api/transaction'),
-  express = require('express'),
-  router = express.Router();
+var accountController = require('../controllers/api/account');
+var  transactionController = require('../controllers/api/transaction');
+var  express = require('express');
+var  router = express.Router();
 
 router.route('/accounts')
   .get(accountController.getAllAccounts);

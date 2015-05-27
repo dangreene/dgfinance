@@ -1,20 +1,24 @@
-var gulp = require('gulp'),
-  jscs = require('gulp-jscs'),
-  jshint = require('gulp-jshint'),
-  stylish = require('jshint-stylish');
+var gulp = require('gulp');
+var jscs = require('gulp-jscs');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 
-gulp.task('jscs', function() {
-  return gulp.src(['app/**/*.js','!app/public/vendor/**/*.js'])
+var sourceFiles = ['**/*.js',
+  '!node_modules/**/*.js',
+  '!app/public/vendor/**/*.js'
+];
+
+gulp.task('test', ['lint', 'jscs'], function() {
+
+});
+
+gulp.task('jscs', ['lint'], function() {
+  return gulp.src(sourceFiles)
     .pipe(jscs());
-
 });
 
 gulp.task('lint', function() {
-  return gulp.src(['app/**/*.js','!app/public/vendor/**/*.js'])
+  return gulp.src(sourceFiles)
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
-});
-
-gulp.task('build', ['jscs', 'lint'], function() {
-
 });

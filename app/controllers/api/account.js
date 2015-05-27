@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-  Account = mongoose.model('Account');
+var mongoose = require('mongoose');
+var Account = mongoose.model('Account');
 
 var getAllAccounts = function(req, res, next) {
   Account.find({}, function(err, doc) {
