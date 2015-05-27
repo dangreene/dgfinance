@@ -3,7 +3,7 @@ var Account = mongoose.model('Account');
 var Transaction = mongoose.model('Transaction');
 var _ = require('lodash');
 
-var getTransactions = function(req, res, next) {
+exports.getTransactions = function(req, res, next) {
   var accountId = req.params.id;
   Transaction.find({
     account: accountId
@@ -12,7 +12,7 @@ var getTransactions = function(req, res, next) {
   });
 };
 
-var saveTransactions = function(req, res, next) {
+exports.saveTransactions = function(req, res, next) {
   var accountId = req.params.id;
   var records = req.body;
 
@@ -42,9 +42,4 @@ var saveTransactions = function(req, res, next) {
       });
     }
   });
-};
-
-module.exports = {
-  saveTransactions: saveTransactions,
-  getTransactions: getTransactions
 };
