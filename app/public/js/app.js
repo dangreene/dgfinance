@@ -1,8 +1,6 @@
 System.config({
   baseURL: '/',
-  transpiler: 'traceur',
   map: {
-    traceur: 'vendor/traceur/traceur.min.js',
     'papaparse': 'vendor/papaparse/papaparse.min.js',
     'angular': 'vendor/angular/angular.min.js',
     'angular-route': 'vendor/angular-route/angular-route.min.js',
