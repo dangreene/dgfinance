@@ -1,5 +1,5 @@
-define(['angular', 'angular-route', './bankAccount.ctrl',
-    'app/modules/bankAccount/bankAccount.service'
+define(['angular', 'angular-route', './bankAccount.ctrl.js',
+    'app/modules/bankAccount/bankAccount.service.js'
   ],
   function(angular) {
     return angular.module('bankAccount', ['ngRoute', 'bankAccount.ctrl',

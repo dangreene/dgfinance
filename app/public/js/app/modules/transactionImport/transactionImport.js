@@ -1,5 +1,5 @@
-define(['angular', 'angular-route', './transactionImport.ctrl',
-  'app/modules/bankAccount/bankAccount.service'
+define(['angular', 'angular-route', './transactionImport.ctrl.js',
+  'app/modules/bankAccount/bankAccount.service.js'
 ], function(angular) {
   return angular.module('transactionImport', ['ngRoute',
       'transactionImport.ctrl', 'bankAccount.service'

@@ -1,10 +1,10 @@
-define(['angular', 'components/fileImporters/csvImporters',
-    'components/fileImporters/chaseCsvImporter',
-    'components/fileImporters/elanCsvImporter',
-    'components/fileImporters/fnfgCsvImporter',
-    './modules/financeMain/financeMain',
-    './modules/transactionImport/transactionImport',
-    './modules/bankAccount/bankAccount', './modules/directives/fileInput'
+define(['angular', 'components/fileImporters/csvImporters.js',
+    'components/fileImporters/chaseCsvImporter.js',
+    'components/fileImporters/elanCsvImporter.js',
+    'components/fileImporters/fnfgCsvImporter.js',
+    './modules/financeMain/financeMain.js',
+    './modules/transactionImport/transactionImport.js',
+    './modules/bankAccount/bankAccount.js', './modules/directives/fileInput.js'
   ],
   function(angular, csvImporters, chaseImporter, elanImporter, fnfgImporter) {
 

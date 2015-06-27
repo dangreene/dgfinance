@@ -1,4 +1,4 @@
-define(['angular', 'lodash', 'app/modules/bankAccount/bankAccount.service'],
+define(['angular', 'lodash', 'app/modules/bankAccount/bankAccount.service.js'],
   function(angular, _) {
     return angular.module('bankAccount.ctrl', ['bankAccount.service'])
       .controller('BankAccountCtrl', ['$scope', 'bankAccounts',

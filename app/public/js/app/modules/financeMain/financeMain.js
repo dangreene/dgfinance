@@ -1,4 +1,4 @@
-define(['angular', 'angular-route', './financeMain.ctrl'], function(angular) {
+define(['angular', 'angular-route', './financeMain.ctrl.js'], function(angular) {
   return angular.module('financeMain', ['ngRoute', 'financeMain.ctrl'])
     .config(function($routeProvider) {
 
