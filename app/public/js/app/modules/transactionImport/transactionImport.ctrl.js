@@ -1,5 +1,8 @@
 define(['angular', 'components/fileImporters/csvImporters.js', 'lodash',
-  'app/modules/bankAccount/bankAccount.service.js'
+  'app/modules/bankAccount/bankAccount.service.js',
+  'components/fileImporters/chaseCsvImporter.js',
+  'components/fileImporters/elanCsvImporter.js',
+  'components/fileImporters/fnfgCsvImporter.js'
 ], function(angular, csvImporters, _) {
   return angular.module('transactionImport.ctrl', ['bankAccount.service'])
     .controller('TransactionImportCtrl', ['$scope', 'bankAccounts',

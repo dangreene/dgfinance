@@ -9,17 +9,8 @@ System.config({
     'components': 'js/components'
   },
   meta: {
-    angular: {
-      exports: 'angular'
-    },
     'angular-route': {
       deps: ['angular']
-    },
-    'papaparse': {
-      exports: 'Papa'
-    },
-    'lodash': {
-      exports: '_'
     }
   }
 });

@@ -14,7 +14,10 @@ gulp.task('test', ['lint', 'jscs'], function() {
 
 gulp.task('jscs', ['lint'], function() {
   return gulp.src(sourceFiles)
-    .pipe(jscs({'esnext': true}));
+    .pipe(jscs({
+      esnext: true,
+      configPath: '.jscsrc'
+    }));
 });
 
 gulp.task('lint', function() {
