@@ -1,14 +1,7 @@
 extends layout
 block content
-  h1 dgfinance
-  ul
-    li
-      a(href="#/") Home
-    li
-      a(href="#/bankAccount") Accounts
-    li
-      a(href="#/transactionImport") Import
-  div(data-ng-view)
+  div(class="container")
+    div(data-ng-view)
 
 block scripts
   script(src='/vendor/system.js/dist/system.js')
