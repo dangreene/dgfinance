@@ -6,10 +6,14 @@ System.config({
     'angular-route': 'vendor/angular-route/angular-route.min.js',
     'lodash': 'vendor/lodash/lodash.min.js',
     'app': 'js/app',
-    'components': 'js/components'
+    'components': 'js/components',
+    'ui-bootstrap': 'vendor/angular-bootstrap/ui-bootstrap.min.js'
   },
   meta: {
     'angular-route': {
+      deps: ['angular']
+    },
+    'ui-bootstrap': {
       deps: ['angular']
     }
   }
