@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default" role="navigation" ng-controller="NavigationController as navCtrl">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" ng-click="navCtrl.menuButtonClick()">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#/">dgfinance</a>
+  </div>
+  <div class="navbar-collapse" ng-class="navCtrl.getNavClass()">
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="#/bank-account">Accounts</a>
+      </li>
+      <li>
+        <a href="#/transaction-import">Import</a>
+      </li>
+      <li>
+        <a href="#/user-profile">Profile</a>
+      </li>
+    </ul>
+  </div>
+</nav>
