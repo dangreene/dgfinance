@@ -5,8 +5,12 @@ from './bankAccount.service.js';
 import * as _ from 'lodash';
 import * as angular from 'angular';
 
-function BankAccountController($scope, bankAccounts, BankAccountService) {
+function BankAccountController($location, bankAccounts, BankAccountService) {
   var self = this;
+
+  self.navToCreate = function() {
+    $location.path("/bank-account/create");
+  };
 
   self.accountChanged = function() {
     BankAccountService.getTransactions(self.selectedBankAccount._id)
@@ -22,9 +26,8 @@ function BankAccountController($scope, bankAccounts, BankAccountService) {
 
   initializeController();
 }
-var controllerModule = angular.module('bankAccount.bankAccountController',
-[bankAccountServiceModule.name])
-  .controller('BankAccountController', ['$scope', 'bankAccounts',
+var controllerModule = angular.module('bankAccount.bankAccountController', [bankAccountServiceModule.name])
+  .controller('BankAccountController', ['$location', 'bankAccounts',
     'BankAccountService', BankAccountController
   ]);
 

@@ -7,6 +7,17 @@ function BankAccountService($http) {
     });
   };
 
+  var getAccount = function(accountId) {
+    return $http.get('/api/accounts/' + accountId)
+    .then(function(response) {
+      return response && response.data;
+    });
+  };
+
+  var createAccount = function(account) {
+    return $http.post('/api/accounts', account);
+  };
+
   var insertTransactions = function(accountId, transactions,
     successCallback) {
     return $http
@@ -22,6 +33,8 @@ function BankAccountService($http) {
 
   return {
     getAccounts: getAccounts,
+    getAccount: getAccount,
+    createAccount: createAccount,
     getTransactions: getTransactions,
     insertTransactions: insertTransactions
   };

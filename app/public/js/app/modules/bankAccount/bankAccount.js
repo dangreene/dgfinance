@@ -5,13 +5,22 @@ import {
 }
 from './bankAccount.ctrl.js';
 import {
+  createBankAccountControllerModule
+}
+from './bankAccount.create.ctrl.js';
+import {
   bankAccountServiceModule
 }
 from './bankAccount.service.js';
-
-var mainModule = angular.module('bankAccount', ['ngRoute',
+import {
+  viewBankAccountControllerModule
+}
+from './bankAccount.view.ctrl.js'
+let mainModule = angular.module('bankAccount', ['ngRoute',
   bankAccountControllerModule.name,
-  bankAccountServiceModule.name
+  bankAccountServiceModule.name,
+  createBankAccountControllerModule.name,
+  viewBankAccountControllerModule.name
 ]).config(function($routeProvider) {
   $routeProvider
     .when('/bank-account', {
@@ -22,7 +31,23 @@ var mainModule = angular.module('bankAccount', ['ngRoute',
           return AccountService.getAccounts();
         }]
       }
-    });
+    })
+    .when('/bank-account/create', {
+      templateUrl: 'js/app/modules/bankAccount/bankAccount.create.tpl.html',
+      controller: 'CreateBankAccountController as vm',
+      resolve: {}
+    })
+    .when('/bank-account/:accountId', {
+      templateUrl: 'js/app/modules/bankAccount/bankAccount.view.tpl.html',
+      controller: 'ViewBankAccountController as vm',
+      resolve: {
+        bankAccount: ['$routeParams', 'BankAccountService',
+          function($routeParams, AccountService) {
+            return AccountService.getAccount($routeParams.accountId);
+          }
+        ]
+      }
+    })
 });
 
-export var bankAccountModule = mainModule;
+export let bankAccountModule = mainModule;

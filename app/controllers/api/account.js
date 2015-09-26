@@ -14,3 +14,13 @@ exports.getAccount = function(req, res, next) {
     res.json(doc);
   });
 };
+
+exports.createAccount = function(req, res, next){
+  var accountRequest = req.body;
+  var newAccount = new Account(accountRequest);
+  newAccount.save(function(err, doc){
+    res.json({
+      accountId: doc._id
+    });
+  });
+};

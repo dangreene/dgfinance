@@ -6,7 +6,8 @@ var express = require('express');
 var router = express.Router();
 
 router.route('/accounts')
-  .get(accountController.getAllAccounts);
+  .get(accountController.getAllAccounts)
+  .post(accountController.createAccount);
 
 router.route('/accounts/:id')
   .get(accountController.getAccount);
