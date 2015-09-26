@@ -1,5 +1,5 @@
 import * as angular from 'angular';
-import './modules/financeMain/financeMain.js';
+import {homeModule} from './modules/home/home.js';
 import './modules/transactionImport/transactionImport.js';
 import './modules/bankAccount/bankAccount.js';
 import './modules/directives/fileInput.js';
@@ -11,10 +11,9 @@ import {
   navigationControllerModule
 }
 from './modules/navigation/navigation.ctrl.js';
-import 'ui-bootstrap';
 
-angular.module('dgfinance', ['ui.bootstrap', 'directives.fileInput',
-  'financeMain', 'transactionImport', 'bankAccount', userProfileModule.name,
+angular.module('dgfinance', ['directives.fileInput',
+  homeModule.name, 'transactionImport', 'bankAccount', userProfileModule.name,
   navigationControllerModule.name
 ]);
 

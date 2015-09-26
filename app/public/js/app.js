@@ -4,6 +4,7 @@ System.config({
     'papaparse': 'vendor/papaparse/papaparse.min.js',
     'angular': 'vendor/angular/angular.min.js',
     'angular-route': 'vendor/angular-route/angular-route.min.js',
+    'angular-animate': 'vendor/angular-animate/angular-animate.min.js',
     'lodash': 'vendor/lodash/lodash.min.js',
     'app': 'js/app',
     'components': 'js/components',

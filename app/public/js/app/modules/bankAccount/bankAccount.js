@@ -9,7 +9,7 @@ define(['angular', 'angular-route', './bankAccount.ctrl.js',
     .config(function($routeProvider) {
 
       $routeProvider
-        .when('/bankAccount', {
+        .when('/bank-account', {
           templateUrl: 'js/app/modules/bankAccount/bankAccount.tpl.html',
           controller: 'BankAccountCtrl as bankAccountCtrl',
           resolve: {

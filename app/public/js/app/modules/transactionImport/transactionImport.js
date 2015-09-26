@@ -7,7 +7,7 @@ define(['angular', 'angular-route', './transactionImport.ctrl.js',
     .config(function($routeProvider) {
       var url = 'js/app/modules/transactionImport/transactionImport.tpl.html';
       $routeProvider
-        .when('/transactionImport', {
+        .when('/transaction-import', {
           templateUrl: url,
           controller: 'TransactionImportCtrl as transactionImportCtrl',
           resolve: {
