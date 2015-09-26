@@ -1,28 +1,31 @@
-<h2>Bank Accounts</h2>
+<h4>Bank Accounts</h4>
 
-<h3>Current Accounts:</h3>
-<select ng-model="bankAccountCtrl.selectedBankAccount"
- ng-options="account.description for account in bankAccountCtrl.bankAccounts"
-  ng-change="bankAccountCtrl.accountChanged()"></select>
+<p ng-if="bankAccountCtrl.bankAccounts.length === 0">
+  You have no accounts
+</p>
+<div ng-if="bankAccountCtrl.bankAccounts.length > 0">
+  <h5>Current Accounts:</h5>
+  <select ng-model="bankAccountCtrl.selectedBankAccount" ng-options="account.description for account in bankAccountCtrl.bankAccounts" ng-change="bankAccountCtrl.accountChanged()"></select>
+</div>
+<div ng-if="bankAccountCtrl.accountTransactions">
+  <h5>Transactions</h5>
+  <table>
+    <tr>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Post Date</th>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Notes</th>
+    </tr>
 
-<h3>Transactions</h3>
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Date</th>
-    <th>Post Date</th
-      >
-    <th>Amount</th>
-    <th>Type</th>
-    <th>Notes</th>
-  </tr>
-
-  <tr ng-repeat="transaction in bankAccountCtrl.accountTransactions">
-    <td>{{transaction.description}}</td>
-    <td>{{transaction.transactionDate | date:"MM/dd/yyyy" }}</td>
-    <td>{{transaction.transactionPostDate | date:"MM/dd/yyyy" }}</td>
-    <td>{{transaction.amount | currency}}</td>
-    <td>{{transaction.transactionType}}</td>
-    <td>{{transaction.notes}}</td>
-  </tr>
-</table>
+    <tr ng-repeat="transaction in bankAccountCtrl.accountTransactions">
+      <td>{{transaction.description}}</td>
+      <td>{{transaction.transactionDate | date:"MM/dd/yyyy" }}</td>
+      <td>{{transaction.transactionPostDate | date:"MM/dd/yyyy" }}</td>
+      <td>{{transaction.amount | currency}}</td>
+      <td>{{transaction.transactionType}}</td>
+      <td>{{transaction.notes}}</td>
+    </tr>
+  </table>
+</div>

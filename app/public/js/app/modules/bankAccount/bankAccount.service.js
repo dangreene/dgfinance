@@ -1,29 +1,33 @@
-define(['angular'], function(angular) {
-  return angular.module('bankAccount.service', [])
-    .factory('BankAccountService', ['$http', function($http) {
-      var getAccounts = function() {
-        return $http.get('/api/accounts').then(function(response) {
-          return response && response.data;
-        });
-      };
+import * as angular from 'angular';
 
-      var insertTransactions = function(accountId, transactions,
-        successCallback) {
-        return $http
-          .post('/api/accounts/' + accountId + '/transactions', transactions);
-      };
+function BankAccountService($http) {
+  var getAccounts = function() {
+    return $http.get('/api/accounts').then(function(response) {
+      return response && response.data;
+    });
+  };
 
-      var getTransactions = function(accountId) {
-        return $http.get('/api/accounts/' + accountId + '/transactions')
-          .then(function(response) {
-            return response && response.data;
-          });
-      };
+  var insertTransactions = function(accountId, transactions,
+    successCallback) {
+    return $http
+      .post('/api/accounts/' + accountId + '/transactions', transactions);
+  };
 
-      return {
-        getAccounts: getAccounts,
-        getTransactions: getTransactions,
-        insertTransactions: insertTransactions
-      };
-    }]);
-});
+  var getTransactions = function(accountId) {
+    return $http.get('/api/accounts/' + accountId + '/transactions')
+      .then(function(response) {
+        return response && response.data;
+      });
+  };
+
+  return {
+    getAccounts: getAccounts,
+    getTransactions: getTransactions,
+    insertTransactions: insertTransactions
+  };
+}
+
+var serviceModule = angular.module('bankAccount.service', [])
+  .factory('BankAccountService', ['$http', BankAccountService]);
+
+export var bankAccountServiceModule = serviceModule;

@@ -1,75 +1,93 @@
-define(['angular', 'components/fileImporters/csvImporters.js', 'lodash',
-  'app/modules/bankAccount/bankAccount.service.js',
-  'components/fileImporters/chaseCsvImporter.js',
-  'components/fileImporters/elanCsvImporter.js',
-  'components/fileImporters/fnfgCsvImporter.js'
-], function(angular, csvImporters, _) {
-  return angular.module('transactionImport.ctrl', ['bankAccount.service'])
-    .controller('TransactionImportCtrl', ['$scope', 'bankAccounts',
-      'BankAccountService',
-      function($scope, bankAccounts, BankAccountService) {
-        var self = this;
+import * as angular from 'angular';
+import * as csvImporters from 'components/fileImporters/csvImporters.js';
+import * as _ from 'lodash';
+import {
+  bankAccountServiceModule
+}
+from './../bankAccount/bankAccount.service.js';
+import 'components/fileImporters/chaseCsvImporter.js';
+import 'components/fileImporters/elanCsvImporter.js';
+import 'components/fileImporters/fnfgCsvImporter.js';
+import 'ui-grid';
 
-        self.readInput = function() {
-          if (self.currentFile) {
-            var importer = csvImporters.getImporter(self.selectedFileType.name);
-            importer.parseFile(self.currentFile, function(results) {
-              console.log(results);
-              self.currentFileContent = results;
-              self.selectedAccount = null;
-              $scope.$digest();
-            });
-          }
-        };
+function TransactionImportController($scope, bankAccounts, BankAccountService) {
+  var self = this;
 
-        self.saveToAccount = function() {
-          BankAccountService.insertTransactions(self.selectedBankAccount._id,
-            self.getCurrentAccountTransactions());
-        };
+  self.readInput = function() {
+    if (self.currentFile) {
+      let importer = csvImporters.getImporter(self.selectedFileType.name);
+      importer.parseFile(self.currentFile, function(results) {
+        console.log(results);
+        self.currentFileContent = results;
+        self.selectedAccount = null;
+        $scope.$digest();
+      });
+    }
+  };
 
-        self.getCurrentAccountTransactions = function() {
-          var account = self.getCurrentAccount();
-          return account && account.transactions || [];
-        };
+  self.saveToAccount = function() {
+    BankAccountService.insertTransactions(self.selectedBankAccount._id,
+      self.getCurrentAccountTransactions());
+  };
 
-        self.hasTransactions = function() {
-          return self.getCurrentAccountTransactions().length > 0;
-        };
+  self.getCurrentAccountTransactions = function() {
+    let account = self.getCurrentAccount();
+    return account && account.transactions || [];
+  };
 
-        self.getCurrentAccount = function() {
-          if (self.selectedAccount) {
-            return _.find(self.currentFileContent.accounts, {
-              name: self.selectedAccount.name
-            });
-          }
-        };
+  // TODO:  http://ui-grid.info/docs/#/tutorial/213_auto_resizing
+  // self.getGridData = function() {
+  //   return {
+  //     data: self.getCurrentAccountTransactions()
+  //   };
+  // };
 
-        self.hasAccounts = function() {
-          return self.currentFileContent &&
-            self.currentFileContent.accounts &&
-            self.currentFileContent.accounts.length > 0;
-        };
+  self.hasTransactions = function() {
+    return self.getCurrentAccountTransactions().length > 0;
+  };
 
-        var initializeController = function() {
-          var fileTypes = [];
+  self.getCurrentAccount = function() {
+    if (self.selectedAccount) {
+      return _.find(self.currentFileContent.accounts, {
+        name: self.selectedAccount.name
+      });
+    }
+  };
 
-          csvImporters.getAvailableImporters()
-            .forEach(function(availableImporter) {
-              fileTypes.push({
-                name: availableImporter
-              });
-            });
+  self.hasAccounts = function() {
+    return self.currentFileContent &&
+      self.currentFileContent.accounts &&
+      self.currentFileContent.accounts.length > 0;
+  };
 
-          self.fileTypes = fileTypes;
-          self.currentFile = null;
-          self.selectedFileType = null;
-          self.currentFileContent = null;
-          self.selectedAccount = null;
-          self.bankAccounts = bankAccounts;
-          self.selectedBankAccount = null;
-        };
+  let initializeController = function() {
+    let fileTypes = [];
 
-        initializeController();
-      }
-    ]);
-});
+    csvImporters.getAvailableImporters()
+      .forEach(function(availableImporter) {
+        fileTypes.push({
+          name: availableImporter
+        });
+      });
+
+    self.fileTypes = fileTypes;
+    self.currentFile = null;
+    self.selectedFileType = null;
+    self.currentFileContent = null;
+    self.selectedAccount = null;
+    self.bankAccounts = bankAccounts;
+    self.selectedBankAccount = null;
+  };
+
+  initializeController();
+}
+
+let controllerModule =
+  angular.module('transactionImport.transactionImportController', ['ui.grid',
+    bankAccountServiceModule.name
+  ])
+  .controller('TransactionImportController', ['$scope', 'bankAccounts',
+    'BankAccountService', TransactionImportController
+  ]);
+
+export let transactionImportControllerModule = controllerModule;

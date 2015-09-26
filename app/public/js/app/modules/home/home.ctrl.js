@@ -10,4 +10,5 @@ function HomeController() {
 
 var controllerModule = angular.module('financeMain.homeController', [])
   .controller('HomeController', [HomeController]);
+  
 export var homeControllerModule = controllerModule;

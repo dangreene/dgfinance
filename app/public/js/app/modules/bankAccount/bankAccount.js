@@ -1,22 +1,28 @@
-define(['angular', 'angular-route', './bankAccount.ctrl.js',
-    'app/modules/bankAccount/bankAccount.service.js'
-  ],
-  function(angular) {
-    return angular.module('bankAccount', ['ngRoute', 'bankAccount.ctrl',
-      'bankAccount.service'
-    ])
+import * as angular from 'angular';
+import 'angular-route';
+import {
+  bankAccountControllerModule
+}
+from './bankAccount.ctrl.js';
+import {
+  bankAccountServiceModule
+}
+from './bankAccount.service.js';
 
-    .config(function($routeProvider) {
-
-      $routeProvider
-        .when('/bank-account', {
-          templateUrl: 'js/app/modules/bankAccount/bankAccount.tpl.html',
-          controller: 'BankAccountCtrl as bankAccountCtrl',
-          resolve: {
-            bankAccounts: ['BankAccountService', function(AccountService) {
-              return AccountService.getAccounts();
-            }]
-          }
-        });
+var mainModule = angular.module('bankAccount', ['ngRoute',
+  bankAccountControllerModule.name,
+  bankAccountServiceModule.name
+]).config(function($routeProvider) {
+  $routeProvider
+    .when('/bank-account', {
+      templateUrl: 'js/app/modules/bankAccount/bankAccount.tpl.html',
+      controller: 'BankAccountController as bankAccountCtrl',
+      resolve: {
+        bankAccounts: ['BankAccountService', function(AccountService) {
+          return AccountService.getAccounts();
+        }]
+      }
     });
-  });
+});
+
+export var bankAccountModule = mainModule;

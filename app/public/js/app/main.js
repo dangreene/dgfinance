@@ -1,7 +1,16 @@
 import * as angular from 'angular';
-import {homeModule} from './modules/home/home.js';
-import './modules/transactionImport/transactionImport.js';
-import './modules/bankAccount/bankAccount.js';
+import {
+  homeModule
+}
+from './modules/home/home.js';
+import {
+  transactionImportModule
+}
+from './modules/transactionImport/transactionImport.js';
+import {
+  bankAccountModule
+}
+from './modules/bankAccount/bankAccount.js';
 import './modules/directives/fileInput.js';
 import {
   userProfileModule
@@ -13,7 +22,8 @@ import {
 from './modules/navigation/navigation.ctrl.js';
 
 angular.module('dgfinance', ['directives.fileInput',
-  homeModule.name, 'transactionImport', 'bankAccount', userProfileModule.name,
+  homeModule.name, transactionImportModule.name, bankAccountModule.name,
+  userProfileModule.name,
   navigationControllerModule.name
 ]);
 

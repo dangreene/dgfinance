@@ -1,24 +1,31 @@
-define(['angular', 'lodash', 'app/modules/bankAccount/bankAccount.service.js'],
-  function(angular, _) {
-    return angular.module('bankAccount.ctrl', ['bankAccount.service'])
-      .controller('BankAccountCtrl', ['$scope', 'bankAccounts',
-        'BankAccountService',
-        function($scope, bankAccounts, BankAccountService) {
-          var self = this;
+import {
+  bankAccountServiceModule
+}
+from './bankAccount.service.js';
+import * as _ from 'lodash';
+import * as angular from 'angular';
 
-          self.accountChanged = function() {
-            BankAccountService.getTransactions(self.selectedBankAccount._id)
-              .then(function(response) {
-                self.accountTransactions = response;
-              });
-          };
-          var initializeController = function() {
-            self.accountTransactions = null;
-            self.selectedBankAccount = null;
-            self.bankAccounts = bankAccounts;
-          };
+function BankAccountController($scope, bankAccounts, BankAccountService) {
+  var self = this;
 
-          initializeController();
-        }
-      ]);
-  });
+  self.accountChanged = function() {
+    BankAccountService.getTransactions(self.selectedBankAccount._id)
+      .then(function(response) {
+        self.accountTransactions = response;
+      });
+  };
+  var initializeController = function() {
+    self.accountTransactions = null;
+    self.selectedBankAccount = null;
+    self.bankAccounts = bankAccounts;
+  };
+
+  initializeController();
+}
+var controllerModule = angular.module('bankAccount.bankAccountController',
+[bankAccountServiceModule.name])
+  .controller('BankAccountController', ['$scope', 'bankAccounts',
+    'BankAccountService', BankAccountController
+  ]);
+
+export var bankAccountControllerModule = controllerModule;

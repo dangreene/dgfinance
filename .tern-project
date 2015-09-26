@@ -1,0 +1,24 @@
+{
+  "libs": [
+    "browser",
+    "ecma5",
+    "ecma6"
+  ],
+  "loadEagerly": [
+    "*.js"
+  ],
+  "dontLoad": [
+    ""
+  ],
+  "plugins": {
+    "complete_strings": {},
+    "node": {},
+    "lint": {},
+    "angular": {},
+    "doc_comment": {
+      "fullDocs": true
+    },
+    "node-express":{},
+    "node-mongoose":{}
+    }
+}

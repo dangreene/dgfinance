@@ -8,13 +8,17 @@ System.config({
     'lodash': 'vendor/lodash/lodash.min.js',
     'app': 'js/app',
     'components': 'js/components',
-    'ui-bootstrap': 'vendor/angular-bootstrap/ui-bootstrap.min.js'
+    'ui-bootstrap': 'vendor/angular-bootstrap/ui-bootstrap.min.js',
+    'ui-grid': 'vendor/angular-ui-grid/ui-grid.min.js'
   },
   meta: {
     'angular-route': {
       deps: ['angular']
     },
     'ui-bootstrap': {
+      deps: ['angular']
+    },
+    'ui-grid': {
       deps: ['angular']
     }
   }
