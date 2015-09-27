@@ -41,9 +41,9 @@ let mainModule = angular.module('bankAccount', ['ngRoute',
       templateUrl: 'js/app/modules/bankAccount/bankAccount.view.tpl.html',
       controller: 'ViewBankAccountController as vm',
       resolve: {
-        bankAccount: ['$routeParams', 'BankAccountService',
-          function($routeParams, AccountService) {
-            return AccountService.getAccount($routeParams.accountId);
+        bankAccount: ['$route', 'BankAccountService',
+          function($route, AccountService) {
+            return AccountService.getAccount($route.current.params.accountId);
           }
         ]
       }

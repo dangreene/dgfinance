@@ -1,5 +1,8 @@
 import * as angular from "angular";
-import {bankAccountServiceModule} from './bankAccount.service.js';
+import {
+  bankAccountServiceModule
+}
+from './bankAccount.service.js';
 
 function CreateBankAccountController($location, bankAccountService) {
   var self = this;
@@ -8,8 +11,10 @@ function CreateBankAccountController($location, bankAccountService) {
     bankAccountService.createAccount({
       initialBalance: self.initialBalance,
       description: self.accountName
-    }).then(function(response){
-      $location.path('/bank-account/' + response.accountId)
+    }).then(function(response) {
+      let accountId = response && response.data &&
+        response.data.accountId || "";
+      $location.path('/bank-account/' + accountId)
     });
   };
 
