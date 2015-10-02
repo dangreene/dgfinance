@@ -1,0 +1,24 @@
+<h4>Import from File</h4>
+<form>
+  <div class="form-group">
+    <label for="file-selection-dropdown" class="control-label">CSV File Type</labeL>
+    <select id="file-selection-dropdown" class="form-control"
+    ng-model="vm.selectedFileType"
+    ng-options="fileType for fileType in vm.supportedFileTypes">
+    </select>
+  </div>
+
+  <div class="form-group" ng-show="vm.selectedFileType">
+    <label for="file-selection-input">Select a file</label>
+    <div id="file-selection-input"
+    file-input="vm.currentFile" on-change="vm.readInput()"></div>
+  </div>
+  <div ng-if="vm.fileAccounts">
+    <p ng-if="vm.fileAccounts.length === 0" class="bg-danger">No accounts found</p>
+    <p ng-if="vm.fileAccounts.length === 1" class="bg-success">1 account found</p>
+    <p ng-if="vm.fileAccounts.length > 1" class="bg-success">{{vm.fileAccounts.length}} accounts found</p>
+  </div>
+
+  <button class="btn btn-primary" ng-click="vm.navigate()"
+  ng-disabled="!vm.currentFile || vm.fileAccounts.length === 0">Next</button>
+</form>

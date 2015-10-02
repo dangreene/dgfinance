@@ -1,0 +1,23 @@
+<h4>Import Transactions</h4>
+<form>
+  <div ng-if="!vm.accounts || vm.accounts.length === 0">
+    <p class="bg-danger">No accounts found</p>
+  </div>
+  <div class="form-group" ng-if="vm.accounts.length > 0">
+    <label for="account-list" class="control-label">Account</label>
+    <select id="account-list" ng-model="vm.selectedAccount" ng-options="account.name for account in vm.accounts" class="form-control"></select>
+  </div>
+  <div ng-if="vm.selectedAccount.transactions.length === 0">
+    <p class="bg-danger">No transactions found</p>
+  </div>
+  <div class="form-group" ng-if="vm.selectedAccount.transactions.length > 0">
+    <label for="transactions-grid-container" class="control-label">Transactions</label>
+    <div id="transactions-grid-container" ui-grid="{ data: vm.selectedAccount.transactions }" class="transactionGrid"></div>
+  </div>
+  <div class="form-group" ng-if="vm.selectedAccount.transactions.length > 0">
+    <label for="bank-accounts-list" class="control-label">Import into account</label>
+    <select id="bank-accounts-list" class="form-control" ng-model="vm.selectedBankAccount" ng-options="account.description for account in vm.bankAccounts">
+    </select>
+  </div>
+  <button class="btn btn-primary" ng-if="vm.selectedAccount.transactions.length > 0" ng-click="vm.importTransactionsToAccount()" ng-disabled="!vm.selectedBankAccount">Import</button>
+</form>

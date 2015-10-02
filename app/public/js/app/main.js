@@ -20,11 +20,16 @@ import {
   navigationControllerModule
 }
 from './modules/navigation/navigation.ctrl.js';
+import {
+  notificationControllerModule
+}
+from './modules/notification/notification.ctrl.js';
 
 angular.module('dgfinance', ['directives.fileInput',
   homeModule.name, transactionImportModule.name, bankAccountModule.name,
   userProfileModule.name,
-  navigationControllerModule.name
+  navigationControllerModule.name,
+  notificationControllerModule.name
 ]);
 
 angular.bootstrap(document, ['dgfinance']);
