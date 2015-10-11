@@ -10,3 +10,8 @@ node_modules
 
 # Database seeds
 dbseed.js
+
+# editor configs atom, vs code
+typings
+jsconfig.json
+.tern-project
