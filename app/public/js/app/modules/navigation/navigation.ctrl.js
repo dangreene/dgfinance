@@ -1,14 +1,18 @@
 class NavigationController {
   constructor() {
-    this.navCollapsed = true;
+    this._navCollapsed = true;
+  }
+  get navCollapsed() {
+    return this._navCollapsed;
   }
   menuButtonClick() {
-    this.navCollapsed = !this.navCollapsed;
+    this._navCollapsed = !this._navCollapsed;
   }
   getNavClass() {
-    return (this.navCollapsed) ? "collapse" : "";
+    return (this._navCollapsed) ? "collapse" : "";
   }
 }
+
 var controllerModule = angular.module('navigation.navigationController', [])
   .controller('NavigationController', [NavigationController]);
 

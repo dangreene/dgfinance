@@ -1,14 +1,12 @@
 import * as angular from 'angular';
 
-function HomeController() {
-  var initializeController = function() {
+class HomeController {
+  constructor() {
 
-  };
-
-  initializeController();
+  }
 }
 
 var controllerModule = angular.module('financeMain.homeController', [])
   .controller('HomeController', [HomeController]);
-  
+
 export var homeControllerModule = controllerModule;

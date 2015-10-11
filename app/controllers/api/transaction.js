@@ -20,8 +20,8 @@ exports.saveTransactions = function(req, res, next) {
     _id: accountId
   }, function(err, doc) {
     if (err) {
-      res.json({
-        message: 'failed'
+      res.status(500).json({
+        message: 'error'
       });
     } else {
       var docsToSave = _.map(records, function(record) {
@@ -36,6 +36,11 @@ exports.saveTransactions = function(req, res, next) {
       });
 
       Transaction.collection.insert(docsToSave, {}, function(err, doc) {
+        if (err) {
+          return res.status(500).json({
+            message: 'error'
+          });
+        }
         res.json({
           message: 'success'
         });
