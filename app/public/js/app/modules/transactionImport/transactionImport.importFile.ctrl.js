@@ -7,6 +7,7 @@ from './transactionImport.service.js';
 import 'components/fileImporters/chaseCsvImporter.js';
 import 'components/fileImporters/elanCsvImporter.js';
 import 'components/fileImporters/fnfgCsvImporter.js';
+import './../directives/fileInput.js';
 
 class ImportFileController {
   constructor($scope, $location, importService) {
@@ -51,7 +52,7 @@ class ImportFileController {
   }
 }
 
-let controllerModule = angular.module('transactionImport.importFileController', [transactionImportServiceModule.name])
+let controllerModule = angular.module('transactionImport.importFileController', [transactionImportServiceModule.name, 'directives.fileInput'])
   .controller('ImportFileController', ['$scope', '$location', 'transactionImportService', ImportFileController]);
 
 export let importFileControllerModule = controllerModule;

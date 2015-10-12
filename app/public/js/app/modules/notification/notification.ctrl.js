@@ -1,6 +1,10 @@
 import * as angular from 'angular';
+import {notificationTypes} from './notificationTypes.js';
 import {
-  notificationTypes,
+  notificationSectionDirectiveModule
+}
+from './../directives/notificationSection.js';
+import {
   notificationServiceModule
 }
 from './notification.service.js';
@@ -12,20 +16,11 @@ class NotificationController {
   get notifications() {
     return this._notificationService.getAll();
   }
-  getNotificationClass(notification) {
-    switch (notification.notificationType) {
-      case notificationTypes.success:
-        return "bg-success";
-      case notificationTypes.error:
-        return "bg-error";
-      default:
-        return "";
-    }
-  }
 }
 
 let controllerModule =
-  angular.module('notification.notificationController', [notificationServiceModule.name])
+  angular.module('notification.notificationController', [notificationSectionDirectiveModule.name,
+    notificationServiceModule.name])
   .controller('NotificationController', ["NotificationService", NotificationController]);
 
 export let notificationControllerModule = controllerModule;

@@ -10,7 +10,7 @@ var intHomeModule = angular.module('home', ['ngRoute', homeControllerModule.name
 
     $routeProvider.when('/', {
       templateUrl: 'js/app/modules/home/home.tpl.html',
-      controller: 'HomeController as homeCtrl'
+      controller: 'HomeController as vm'
     });
 
     $routeProvider.otherwise({

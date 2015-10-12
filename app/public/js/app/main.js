@@ -11,7 +11,6 @@ import {
   bankAccountModule
 }
 from './modules/bankAccount/bankAccount.js';
-import './modules/directives/fileInput.js';
 import {
   userProfileModule
 }
@@ -25,7 +24,7 @@ import {
 }
 from './modules/notification/notification.ctrl.js';
 
-angular.module('dgfinance', ['directives.fileInput',
+angular.module('dgfinance', [
   homeModule.name, transactionImportModule.name, bankAccountModule.name,
   userProfileModule.name,
   navigationControllerModule.name,

@@ -5,8 +5,7 @@ import {
 }
 from './transactionImport.service.js';
 import {
-  notificationServiceModule,
-  notificationTypes
+  notificationServiceModule
 }
 from './../notification/notification.service.js';
 import 'ui-grid';
@@ -41,18 +40,18 @@ class ImportRecordsController {
   }
 
   importTransactionsToAccount() {
+    this._notificationService.clear();
     this._bankAccountService.insertTransactions(this._selectedBankAccount._id,
-      this._selectedAccount.transactions).then(()=>{
-        // TODO: move in directive?
-        this._notificationService.add("Imported successfully", notificationTypes.success);
-      }, () => {
-        this._notificationService.add("An error has occured.", notificationTypes.error);
-      });
+      this._selectedAccount.transactions).then(() => {
+      this._notificationService.addSuccess("Imported successfully");
+    }, () => {
+      this._notificationService.addError("An error has occured.");
+    });
   }
 }
 
 let controllerModule =
   angular.module('transactionImport.importRecordsController', [transactionImportServiceModule.name, notificationServiceModule.name, 'ui.grid'])
-  .controller('ImportRecordsController', ['transactionImportService', 'bankAccounts', 'BankAccountService', "NotificationService", ImportRecordsController]);
+  .controller('ImportRecordsController', ['transactionImportService', 'bankAccounts', 'BankAccountService', 'NotificationService', ImportRecordsController]);
 
 export let importRecordsControllerModule = controllerModule;

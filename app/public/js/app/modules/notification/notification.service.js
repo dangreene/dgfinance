@@ -1,8 +1,5 @@
 import * as angular from 'angular';
-export const notificationTypes = {
-  success: "success",
-  error: "error"
-};
+import {notificationTypes} from './notificationTypes.js';
 
 function notificationService() {
   // TODO: clear notifications on route change
@@ -15,6 +12,14 @@ function notificationService() {
     });
   }
 
+  function addError(message) {
+    this.add(message, notificationTypes.error);
+  }
+
+  function addSuccess(message) {
+    this.add(message, notificationTypes.success);
+  }
+
   function clear() {
     notifications.length = 0;
   }
@@ -25,10 +30,11 @@ function notificationService() {
 
   return {
     add: add,
+    addSuccess: addSuccess,
+    addError: addError,
     clear: clear,
-    notificationTypes: notificationTypes,
     getAll: getAll
-  }
+  };
 }
 
 let serviceModule =
