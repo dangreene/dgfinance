@@ -1,2 +1,5 @@
-<h4>Account</h4>
-<div>Name: {{vm.accountName}}</div>
+<h4>Account: {{vm.accountName}}</h4>
+<h5>Transactions</h5>
+<div ng-if="vm.transactions.length > 0">
+  <div id="transactions-grid-container" ui-grid="{ data: vm.transactions }" class="transactionGrid"></div>
+</div>

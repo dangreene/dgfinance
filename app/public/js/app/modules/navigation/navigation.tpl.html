@@ -5,18 +5,22 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#/">dgfinance</a>
+    <a class="navbar-brand" href="" ng-click="navCtrl.navigateTo('/')">dgfinance</a>
   </div>
   <div class="navbar-collapse" ng-class="navCtrl.getNavClass()">
     <ul class="nav navbar-nav">
-      <li>
-        <a href="#/bank-account">Accounts</a>
+      <li class="dropdown" ng-class="navCtrl.getAccountsClass()">
+        <a href="" class="dropdown-toggle" ng-click="navCtrl.toggleAccountsMenu()">Accounts<span class="caret"></span></a>
+        <ul class="dropdown-menu" ng-show="true">
+          <li ng-repeat="account in navCtrl.accounts">
+            <a href="" ng-click="navCtrl.navigateTo('/bank-account/' + account._id)">{{account.description}}</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li><a href="" ng-click="navCtrl.navigateTo('/bank-account/create')">Add New</a></li>
+        </ul>
       </li>
       <li>
-        <a href="#/transaction-import/import-file">Import</a>
-      </li>
-      <li>
-        <a href="#/user-profile">Profile</a>
+        <a href="" ng-click="navCtrl.navigateTo('/transaction-import/import-file')">Import</a>
       </li>
     </ul>
   </div>

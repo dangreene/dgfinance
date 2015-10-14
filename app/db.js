@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 // TODO: load all models in folder dynamically
 require('./models/account');
 require('./models/transaction');
-require('./models/user');
 
 exports.connect = function(uri, successCallback) {
 

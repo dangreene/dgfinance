@@ -19,7 +19,12 @@ exports.createAccount = function(req, res, next){
   var accountRequest = req.body;
   var newAccount = new Account(accountRequest);
   newAccount.save(function(err, doc){
-    res.json({
+    if (err) {
+      return res.status(500).json({
+        message: 'error'
+      });
+    }
+    return res.json({
       accountId: doc._id
     });
   });

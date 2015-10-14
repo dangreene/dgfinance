@@ -1,18 +1,24 @@
 import * as angular from "angular";
+import 'ui-grid';
 
-function ViewBankAccountController(bankAccount) {
-  var self = this;
+class ViewBankAccountController {
 
-  function initialize() {
-    self.accountName = bankAccount.description;
+  constructor(bankAccount, transactions) {
+    this._accountName = bankAccount.description;
+    this._transactions = transactions;
+  }
+  get accountName() {
+    return this._accountName;
+  }
+  get transactions() {
+    return this._transactions;
   }
 
-  initialize();
 }
 
 let controllerModule =
-  angular.module('bankAccount.viewBankAccountController', [])
-  .controller('ViewBankAccountController', ['bankAccount',
+  angular.module('bankAccount.viewBankAccountController', ['ui.grid'])
+  .controller('ViewBankAccountController', ['bankAccount', 'transactions',
     ViewBankAccountController
   ]);
 

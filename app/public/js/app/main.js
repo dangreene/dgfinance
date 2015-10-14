@@ -12,10 +12,6 @@ import {
 }
 from './modules/bankAccount/bankAccount.js';
 import {
-  userProfileModule
-}
-from './modules/userProfile/userProfile.js';
-import {
   navigationControllerModule
 }
 from './modules/navigation/navigation.ctrl.js';
@@ -26,7 +22,6 @@ from './modules/notification/notification.ctrl.js';
 
 angular.module('dgfinance', [
   homeModule.name, transactionImportModule.name, bankAccountModule.name,
-  userProfileModule.name,
   navigationControllerModule.name,
   notificationControllerModule.name
 ]);
