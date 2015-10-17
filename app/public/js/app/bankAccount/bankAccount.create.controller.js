@@ -1,9 +1,3 @@
-import * as angular from "angular";
-import {
-  bankAccountServiceModule
-}
-from './bankAccount.service.js';
-
 class CreateBankAccountController {
   constructor($location, bankAccountService) {
     this._bankAccountService = bankAccountService;
@@ -31,15 +25,7 @@ class CreateBankAccountController {
     }).then((response) => {
       let accountId = response && response.data &&
         response.data.accountId || "";
-      this._$location.path('/bank-account/' + accountId)
+      this._$location.path('/bank-account/' + accountId);
     });
   }
 }
-
-let controllerModule =
-  angular.module('bankAccount.createBankAccountController', [bankAccountServiceModule.name])
-  .controller('CreateBankAccountController', ['$location', 'BankAccountService',
-    CreateBankAccountController
-  ]);
-
-export let createBankAccountControllerModule = controllerModule;

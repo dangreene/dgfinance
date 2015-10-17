@@ -1,6 +1,9 @@
-import * as angular from 'angular';
+import angular from 'angular';
 
-function BankAccountService($http) {
+export default angular.module('services.bankAccount', [])
+  .factory('bankAccountService', bankAccountService)
+
+function bankAccountService($http) {
   var getAccounts = function() {
     return $http.get('/api/accounts').then(function(response) {
       return response && response.data;
@@ -9,9 +12,9 @@ function BankAccountService($http) {
 
   var getAccount = function(accountId) {
     return $http.get('/api/accounts/' + accountId)
-    .then(function(response) {
-      return response && response.data;
-    });
+      .then(function(response) {
+        return response && response.data;
+      });
   };
 
   var createAccount = function(account) {
@@ -39,8 +42,3 @@ function BankAccountService($http) {
     insertTransactions: insertTransactions
   };
 }
-
-var serviceModule = angular.module('bankAccount.service', [])
-  .factory('BankAccountService', ['$http', BankAccountService]);
-
-export var bankAccountServiceModule = serviceModule;

@@ -24,4 +24,4 @@ System.config({
   }
 });
 
-System.import('app/main.js');
+System.import('app/app.module.js');

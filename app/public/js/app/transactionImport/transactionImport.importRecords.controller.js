@@ -1,16 +1,6 @@
-import * as angular from 'angular';
 import * as _ from 'lodash';
-import {
-  transactionImportServiceModule
-}
-from './transactionImport.service.js';
-import {
-  notificationServiceModule
-}
-from './../notification/notification.service.js';
-import 'ui-grid';
 
-class ImportRecordsController {
+export default class ImportRecordsController {
   constructor(importService, bankAccounts, bankAccountService, notificationService) {
     this._importService = importService;
     this._accounts = importService.accounts;
@@ -49,9 +39,3 @@ class ImportRecordsController {
     });
   }
 }
-
-let controllerModule =
-  angular.module('transactionImport.importRecordsController', [transactionImportServiceModule.name, notificationServiceModule.name, 'ui.grid'])
-  .controller('ImportRecordsController', ['transactionImportService', 'bankAccounts', 'BankAccountService', 'NotificationService', ImportRecordsController]);
-
-export let importRecordsControllerModule = controllerModule;

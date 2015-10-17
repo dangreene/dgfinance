@@ -1,9 +1,4 @@
-import {
-  navigationServiceModule
-}
-from './navigation.service.js';
-
-class NavigationController {
+export default class NavigationController {
   constructor($location, navigationService) {
     this._navigationService = navigationService;
     navigationService.getAccounts().then((accounts) => {
@@ -37,8 +32,3 @@ class NavigationController {
     this._navCollapsed = true;
   }
 }
-
-var controllerModule = angular.module('navigation.navigationController', [navigationServiceModule.name])
-  .controller('NavigationController', ['$location', 'NavigationService', NavigationController]);
-
-export let navigationControllerModule = controllerModule;

@@ -1,15 +1,10 @@
 import * as angular from 'angular';
 import * as csvImporters from 'components/fileImporters/csvImporters.js';
-import {
-  transactionImportServiceModule
-}
-from './transactionImport.service.js';
 import 'components/fileImporters/chaseCsvImporter.js';
 import 'components/fileImporters/elanCsvImporter.js';
 import 'components/fileImporters/fnfgCsvImporter.js';
-import './../directives/fileInput.js';
 
-class ImportFileController {
+export default class ImportFileController {
   constructor($scope, $location, importService) {
     this._supportedFileTypes = csvImporters.getAvailableImporters();
     this._$scope = $scope;
@@ -51,8 +46,3 @@ class ImportFileController {
     this._$location.path("/transaction-import/import-records");
   }
 }
-
-let controllerModule = angular.module('transactionImport.importFileController', [transactionImportServiceModule.name, 'directives.fileInput'])
-  .controller('ImportFileController', ['$scope', '$location', 'transactionImportService', ImportFileController]);
-
-export let importFileControllerModule = controllerModule;

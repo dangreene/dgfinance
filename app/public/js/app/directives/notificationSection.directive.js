@@ -1,10 +1,13 @@
-import * as angular from 'angular';
-import {notificationTypes} from './../notification/notificationTypes.js';
+import angular from 'angular';
+import {
+  notificationTypes
+}
+from './../notification/notificationTypes.js';
 
-var directiveModule = angular.module("directives.notificationSection", [])
-  .directive('notificationSection', [function() {
+export default angular.module("directives.notificationSection", [])
+  .directive('notificationSection', function() {
     return {
-      templateUrl: 'js/app/modules/directives/notificationSection.tpl.html',
+      templateUrl: 'js/app/components/notificationSection.html',
       restrict: 'A',
       scope: {
         notifications: '='
@@ -24,6 +27,4 @@ var directiveModule = angular.module("directives.notificationSection", [])
         };
       }
     };
-  }]);
-
-export let notificationSectionDirectiveModule = directiveModule;
+  });

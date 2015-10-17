@@ -1,11 +1,15 @@
-import * as angular from 'angular';
 import {
   notificationTypes
 }
-from './notificationTypes.js';
+from '../notification/notificationTypes.js';
+
+import angular from 'angular';
+
+export default angular.module('services.notification', [])
+  .factory('notificationService', notificationService);
 
 function notificationService($rootScope) {
-  // TODO: clear notifications on route change
+
   let notifications = [];
 
   $rootScope.$on('$routeChangeSuccess', function(event, current) {
@@ -43,9 +47,3 @@ function notificationService($rootScope) {
     getAll: getAll
   };
 }
-
-let serviceModule =
-  angular.module('notification.notificationService', ['ngRoute'])
-  .factory('NotificationService', ['$rootScope', notificationService]);
-
-export let notificationServiceModule = serviceModule;
