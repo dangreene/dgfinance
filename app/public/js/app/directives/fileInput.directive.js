@@ -1,5 +1,5 @@
 import angular from 'angular';
-export default angular.module('directives.fileInput')
+export default angular.module('directives.fileInput', [])
   .directive('fileInput', function($parse) {
     return {
       restrict: 'EA',

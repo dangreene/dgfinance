@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 
-export default class ImportRecordsController {
-  constructor(importService, bankAccounts, bankAccountService, notificationService) {
-    this._importService = importService;
-    this._accounts = importService.accounts;
+export default class {
+  constructor(transactionImportService, bankAccounts, bankAccountService, notificationService) {
+    this._importService = transactionImportService;
+    this._accounts = transactionImportService.accounts;
     this._bankAccounts = bankAccounts;
     this._bankAccountService = bankAccountService;
     this._notificationService = notificationService;

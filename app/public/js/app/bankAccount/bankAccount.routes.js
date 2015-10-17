@@ -1,13 +1,18 @@
+import CreateBankAccountController from './bankAccount.create.controller.js';
+import ViewBankAccountController from './bankAccount.view.controller.js';
+
 export default function($routeProvider) {
   $routeProvider
     .when('/bank-account/create', {
       templateUrl: 'js/app/bankAccount/bankAccount.create.html',
-      controller: 'CreateBankAccountController as vm',
+      controller: CreateBankAccountController,
+      controllerAs: "vm",
       resolve: {}
     })
     .when('/bank-account/:accountId', {
       templateUrl: 'js/app/bankAccount/bankAccount.view.html',
-      controller: 'ViewBankAccountController as vm',
+      controller: ViewBankAccountController,
+      controllerAs: "vm",
       resolve: {
         bankAccount: ['$route', 'bankAccountService',
           function($route, accountService) {

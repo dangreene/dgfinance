@@ -1,14 +1,13 @@
-import * as angular from 'angular';
-import * as csvImporters from 'components/fileImporters/csvImporters.js';
-import 'components/fileImporters/chaseCsvImporter.js';
-import 'components/fileImporters/elanCsvImporter.js';
-import 'components/fileImporters/fnfgCsvImporter.js';
+import * as csvImporters from '../../components/fileImporters/csvImporters.js';
+import '../../components/fileImporters/chaseCsvImporter.js';
+import '../../components/fileImporters/elanCsvImporter.js';
+import '../../components/fileImporters/fnfgCsvImporter.js';
 
-export default class ImportFileController {
-  constructor($scope, $location, importService) {
+export default class {
+  constructor($scope, $location, transactionImportService) {
     this._supportedFileTypes = csvImporters.getAvailableImporters();
     this._$scope = $scope;
-    this._importService = importService;
+    this._importService = transactionImportService;
     this._$location = $location;
   }
 

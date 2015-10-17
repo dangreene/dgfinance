@@ -1,9 +1,10 @@
-import * as angular from 'angular';
+import angular from 'angular';
 import 'angular-route';
 import 'ui-grid';
-import {
-  servicesModule
-}
-from '../services/services.bootstrap.js';
+import routeConfig from './bankAccount.routes.js';
+import bankAccountServiceModule from '../services/bankAccount.service.js';
 
-angular.module('bankAccount', ["ngRoute", "ui.grid", servicesModule.name]);
+export default angular.module('bankAccount', ["ngRoute", "ui.grid",
+    bankAccountServiceModule.name
+  ])
+  .config(routeConfig);

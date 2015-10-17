@@ -7,7 +7,7 @@ from './../notification/notificationTypes.js';
 export default angular.module("directives.notificationSection", [])
   .directive('notificationSection', function() {
     return {
-      templateUrl: 'js/app/components/notificationSection.html',
+      templateUrl: 'js/app/directives/notificationSection.html',
       restrict: 'A',
       scope: {
         notifications: '='

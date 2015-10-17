@@ -1,4 +1,4 @@
-class CreateBankAccountController {
+export default class {
   constructor($location, bankAccountService) {
     this._bankAccountService = bankAccountService;
     this._$location = $location;
