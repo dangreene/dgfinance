@@ -1,9 +1,9 @@
 import angular from 'angular';
 
 export default angular.module('services.bankAccount', [])
-  .factory('bankAccountService', bankAccountService)
+  .factory('bankAccountService', bankAccountService);
 
-function bankAccountService($http) {
+function bankAccountService($http, $rootScope) {
   var getAccounts = function() {
     return $http.get('/api/accounts').then(function(response) {
       return response && response.data;
@@ -18,7 +18,9 @@ function bankAccountService($http) {
   };
 
   var createAccount = function(account) {
-    return $http.post('/api/accounts', account);
+    return $http.post('/api/accounts', account).then(function(){
+      $rootScope.$broadcast('bankAccountsUpdated');
+    });
   };
 
   var insertTransactions = function(accountId, transactions,

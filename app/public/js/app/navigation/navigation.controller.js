@@ -1,9 +1,7 @@
 export default class NavigationController {
   constructor($location, navigationService) {
     this._navigationService = navigationService;
-    navigationService.getAccounts().then((accounts) => {
-      this._accounts = accounts;
-    });
+    this._accounts = navigationService.accounts;
     this._navCollapsed = true;
     this._accountsCollapsed = true;
     this._$location = $location;
