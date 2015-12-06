@@ -18,8 +18,9 @@ function bankAccountService($http, $rootScope) {
   };
 
   var createAccount = function(account) {
-    return $http.post('/api/accounts', account).then(function(){
+    return $http.post('/api/accounts', account).then(function(response){
       $rootScope.$broadcast('bankAccountsUpdated');
+      return response;
     });
   };
 
