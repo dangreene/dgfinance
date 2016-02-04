@@ -5,7 +5,7 @@ var stylish = require('jshint-stylish');
 
 var sourceFiles = ['**/*.js',
   '!node_modules/**/*.js',
-  '!app/public/vendor/**/*.js'
+  '!web-app/public/vendor/**/*.js'
 ];
 
 gulp.task('test', ['lint', 'jscs'], function() {

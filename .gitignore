@@ -3,13 +3,16 @@ logs
 *.log
 
 # Vendor packages
-app/public/vendor
+web-app/public/vendor
 
 # Node packages
 node_modules
 
 # Database seeds
 dbseed.js
+
+# Sample Files
+sample_csv
 
 # editor configs atom, vs code
 typings
